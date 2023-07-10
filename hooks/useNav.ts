@@ -28,11 +28,16 @@ const useNav = () => {
     signOut();
   };
 
+  const handleSearch = () => {
+
+  }
+
   return {
     session,
     providers,
     handleSignOut,
     signIn,
+    handleSearch
   };
 };
 
