@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Owner {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  image     String?
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  events    Event[]
+}
+
+model Event {
+  id      Int      @id @default(autoincrement())
+  name    String
+  date    DateTime
+  city    String
+  desc    String
+  Owner   Owner?   @relation(fields: [ownerId], references: [id])
+  ownerId Int?
+}
