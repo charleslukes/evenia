@@ -1,4 +1,6 @@
+import Textarea from "@molecules/Textarea";
 import styles from "./styles.module.scss";
+import TextInput from "@molecules/Text";
 
 const CreateEvent = () => {
   return (
@@ -11,21 +13,21 @@ const CreateEvent = () => {
         <div className={styles.formInput}>
           <div className={styles.left}></div>
           <div className={styles.right}>
-            <div>
-              <input type="text" placeholder="Event title" />
+            <div className={`${styles.firstDetails} ${styles.marginBottom}`}>
+              <TextInput placeholder="Event title" />
               <select name="category">
                 <option value="Category">Category</option>
                 <option value="New Category">New Category</option>
               </select>
             </div>
-            <div>
-              <textarea name="event" cols={30} rows={10}></textarea>
+            <div className={styles.marginBottom}>
+              <Textarea />
             </div>
-            <div>
-                <input type="date" placeholder="date" />
+            <div className={styles.marginBottom}>
+              <TextInput placeholder="date" />
             </div>
-            <div>
-                <input type="text" placeholder="location" />
+            <div className={styles.marginBottom}>
+              <TextInput placeholder="location" />
             </div>
           </div>
         </div>
