@@ -1,15 +1,25 @@
 "use client";
+import Search from "@molecules/Search";
 import styles from "./styles.module.scss";
-import useNav  from "@hooks/useNav";
+import useNav from "@hooks/useNav";
+import Image from "next/image";
 
 const Nav = () => {
-  const {session, providers, handleSignOut, signIn} = useNav();
- 
+  const { session, providers, handleSignOut, signIn, handleSearch } = useNav();
+
   return (
     <nav className={styles.nav}>
-      <div>Logo</div>
+      <div className={styles.logo}>
+        <Image
+          src="/assets/icons/logo.svg"
+          alt="evenia logo"
+          width={30}
+          height={30}
+        />
+        <h3>Evenia</h3>
+      </div>
       <div>
-        <input type="text" />
+        <Search handleSearch={handleSearch} />
       </div>
       {session?.user ? (
         <div>
