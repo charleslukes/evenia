@@ -3,6 +3,7 @@ import Search from "@molecules/Search";
 import styles from "./styles.module.scss";
 import useNav from "@hooks/useNav";
 import Image from "next/image";
+import Button from "@molecules/Button";
 
 const Nav = () => {
   const { session, providers, handleSignOut, signIn, handleSearch } = useNav();
@@ -30,13 +31,11 @@ const Nav = () => {
       ) : (
         providers &&
         Object.values(providers).map((provider) => (
-          <button
-            type="button"
+          <Button
+            text="Sign In"
+            handleClick={() => signIn(provider.id)}
             key={provider.name}
-            onClick={() => signIn(provider.id)}
-          >
-            Sign In
-          </button>
+          />
         ))
       )}
     </nav>
