@@ -1,3 +1,4 @@
+import { createOwner } from "@lib/controller/owner";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -10,14 +11,22 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session }) {
-      // save user session 
       return session;
     },
 
     async signIn({ profile }) {
       try {
-        // save user profile to db
-        console.log({ profile });
+        if (profile) {
+          // for some weid reasons picture is not part of the typings 
+          // from profile but its present in it
+          // had to make it work like so 
+          const { email, name, picture } = { picture: null, ...profile };
+          await createOwner({
+            name: name!.replace(" ", "").toLowerCase(),
+            email: email!,
+            image: picture!,
+          });
+        }
         return true;
       } catch (error) {
         console.log("na here ooo", error);
