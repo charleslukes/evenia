@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  border-radius: 8px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: pointer;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.subcontainer {
+  padding: 1rem;
+}
+
+.card_date {
+  color: #cbcbcb;
+  margin-bottom: 1rem;
+}
+
+.desc {
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
