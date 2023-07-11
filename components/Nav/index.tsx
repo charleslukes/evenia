@@ -1,9 +1,10 @@
 "use client";
-import Search from "@molecules/Search";
+import Search from "@ui/Search";
 import styles from "./styles.module.scss";
-import useNav from "@hooks/useNav";
+import useNav from "@lib/hooks/useNav";
 import Image from "next/image";
-import Button from "@molecules/Button";
+import Button from "@ui/Button";
+import ButtonOutline from "@ui/ButtonOutline";
 
 const Nav = () => {
   const { session, providers, handleSignOut, signIn, handleSearch } = useNav();
@@ -23,10 +24,9 @@ const Nav = () => {
         <Search handleSearch={handleSearch} />
       </div>
       {session?.user ? (
-        <div>
-          <button type="button" onClick={handleSignOut}>
-            Sign Out
-          </button>
+        <div className={styles.signOutContainer}>
+          <ButtonOutline text="Create Event" handleClick={() => {}} className={styles.createEvent} />
+          <Button text="Sign Out" handleClick={handleSignOut} />
         </div>
       ) : (
         providers &&

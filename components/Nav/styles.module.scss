@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+.signOutContainer {
+  display: flex
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -15,4 +19,8 @@
 
 .logo > img {
   margin-right: 10px;
+}
+
+.createEvent {
+  margin-right: 1rem
 }
