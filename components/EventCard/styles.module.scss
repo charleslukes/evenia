@@ -9,7 +9,7 @@
 
 .image {
   width: 100%;
-  height: auto;
+  height: 170px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
 }
@@ -19,11 +19,16 @@
 }
 
 .card_date {
-  color: #cbcbcb;
+  color: var(--dark-gray-two);
   margin-bottom: 1rem;
 }
 
-.desc {
+.title {
   text-transform: capitalize;
   margin-bottom: 1rem;
+  height: 60px;
+}
+
+.ownerName {
+  color: var(--dark-gray-one);
 }
