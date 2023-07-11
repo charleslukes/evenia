@@ -22,7 +22,9 @@ model Event {
   name    String
   date    DateTime
   city    String
+  title   String
+  image   String
   desc    String
-  Owner   Owner?   @relation(fields: [ownerId], references: [id])
+  owner   Owner?   @relation(fields: [ownerId], references: [id])
   ownerId Int?
 }
