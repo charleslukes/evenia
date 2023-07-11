@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1 0 auto
+}
+.formInput {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+}
+
+.left {
+  flex: 1;
+  width: 300px;
+  border: 1px solid red;
+  padding-top: 10px;
+}
+
+.right {
+  flex: 2;
+  padding: 0 3rem;
+}
+
+.firstDetails {
+  display: flex;
+}
+
+.marginBottom {
+  margin-bottom: 1rem;
+}
+
+.contBtn {
+  width: 100%
+}
