@@ -5,16 +5,18 @@ type eventType = {
   date: Date;
   city: string;
   desc: string;
+  title: string;
+  image: string;
 };
 
-export const create = async (data: eventType) => {
+export const create = async (data: eventType, ownerId: number) => {
   const event = await prisma.event.create({
-    data: { ...data },
+    data: { ...data, ownerId },
   });
   return event;
 };
 
-export const remove = async (id: number) => {
+export const deleteEvent = async (id: number) => {
   const event = await prisma.event.delete({
     where: {
       id,
@@ -33,4 +35,25 @@ export const update = async (id: number, data: eventType) => {
     },
   });
   return event;
+};
+
+export const getAllEvents = async () => {
+  const events = await prisma.event.findMany({
+    include: {
+      owner: true,
+    },
+  });
+  return events;
+};
+
+export const getOneEvent = async (id: number) => {
+  const events = await prisma.event.findFirst({
+    where: {
+      id,
+    },
+    include: {
+      owner: true,
+    },
+  });
+  return events;
 };
