@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const EventCard = () => {
+const EventCardsList = () => {
   const router = useRouter();
 
   const [allEvents, setAllEvents] = useState<Array<eventRes>>([]);
@@ -69,4 +69,4 @@ const EventCard = () => {
   );
 };
 
-export default EventCard;
+export default EventCardsList;
