@@ -5,7 +5,7 @@ type textInputType = {
   placeholder: string;
 };
 
-const TextInput = ({ handleSearch, placeholder }: textInputType) => {
+const TextInput = ({ handleSearch, placeholder, ...others }: textInputType) => {
   return (
     <div className={styles.container}>
       <input
@@ -13,6 +13,7 @@ const TextInput = ({ handleSearch, placeholder }: textInputType) => {
         placeholder={placeholder}
         className={styles.textInput}
         onChange={handleSearch}
+        {...others}
       />
     </div>
   );
