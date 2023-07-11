@@ -1,4 +1,5 @@
-import { createOwner } from "@lib/controller/owner";
+import { createOwner, getOwner } from "@lib/controller/owner";
+import { INewSession } from "@lib/shared/types";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -11,15 +12,23 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session }) {
-      return session;
+      const newSession = session as INewSession;
+
+      if (newSession?.user) {
+        const owner = await getOwner(newSession.user.email!);
+        // add ownerId to user session
+        // this will enable easy access in pages
+        newSession.ownerId = owner?.id;
+      }      
+      return newSession;
     },
 
     async signIn({ profile }) {
       try {
         if (profile) {
-          // for some weid reasons picture is not part of the typings 
+          // for some weid reasons picture is not part of the typings
           // from profile but its present in it
-          // had to make it work like so 
+          // had to make it work like so
           const { email, name, picture } = { picture: null, ...profile };
           await createOwner({
             name: name!.replace(" ", "").toLowerCase(),
@@ -29,7 +38,6 @@ const handler = NextAuth({
         }
         return true;
       } catch (error) {
-        console.log("na here ooo", error);
         return false;
       }
     },
