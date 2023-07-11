@@ -7,11 +7,11 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { INewSession } from "@lib/shared/types";
+import EventForm from "@components/EventForm";
 
 const CreateEvent = () => {
   const { data: session } = useSession();
   const ownerSession = session as INewSession;
-
   const router = useRouter();
 
   useEffect(() => {
@@ -50,37 +50,7 @@ const CreateEvent = () => {
         <h2>Event</h2>
         <small>Please fill all the required information</small>
       </div>
-      <form>
-        <div className={styles.formInput}>
-          <div className={styles.left}></div>
-          <div className={styles.right}>
-            <div className={`${styles.firstDetails} ${styles.marginBottom}`}>
-              <TextInput placeholder="Event title" />
-              <select name="category">
-                <option value="Category">Category</option>
-                <option value="New Category">New Category</option>
-              </select>
-            </div>
-            <div className={styles.marginBottom}>
-              <Textarea />
-            </div>
-            <div className={styles.marginBottom}>
-              <TextInput placeholder="date" />
-            </div>
-            <div className={styles.marginBottom}>
-              <TextInput placeholder="location" />
-            </div>
-          </div>
-        </div>
-        <div>
-          <Button
-            type="button"
-            text="Continue"
-            className={styles.contBtn}
-            handleClick={createEvent}
-          />
-        </div>
-      </form>
+      <EventForm />
     </div>
   );
 };
