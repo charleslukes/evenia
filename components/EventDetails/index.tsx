@@ -27,7 +27,7 @@ const EventDetails = ({ eventId }: eventDetailProp) => {
     router.push(`/update-event/${eventData.id}`)
   }
 
-  const deleteEvent = () => {
+  const deleteEvent = async () => {
     try {
       const res = await fetch(`/api/events/${eventId}`, { method: "DELETE"});
       if (res.ok) {
