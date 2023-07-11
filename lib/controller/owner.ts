@@ -29,3 +29,10 @@ export const update = async (id: number, data: ownerType) => {
   });
   return owner;
 };
+
+export const getOwner = async (email: string) => {
+  const owner = await prisma.owner.findFirst({
+    where: { email },
+  });
+  return owner;
+};
