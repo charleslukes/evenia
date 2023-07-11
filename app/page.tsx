@@ -1,5 +1,5 @@
 import homeStyles from "@styles/home.module.scss";
-import EventCardList from "@components/EventCard";
+import EventCardList from "@components/EventCardsList";
 
 const Home = () => {
   return (
