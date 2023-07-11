@@ -1,0 +1,19 @@
+.searchInput {
+    width: 100%;
+    padding: .8rem;
+    padding-left: 2rem;
+    min-width: 300px;
+    background-color: #f6f6f6;
+    border-radius: 20px;
+    border: none;
+}
+
+.container {
+    position: relative;
+}
+
+.magnifyGlass {
+   position: absolute;
+   top: 12px;
+   left: 10px;
+}
