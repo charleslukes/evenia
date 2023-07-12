@@ -7,7 +7,7 @@ import Button from "@ui/Button";
 import ButtonOutline from "@ui/ButtonOutline";
 
 const Nav = () => {
-  const { session, providers, handleSignOut, signIn, handleSearch } = useNav();
+  const { session, providers, handleSignOut, signIn, handleSearch, handleCreateEvent } = useNav();
 
   return (
     <nav className={styles.nav}>
@@ -25,7 +25,7 @@ const Nav = () => {
       </div>
       {session?.user ? (
         <div className={styles.signOutContainer}>
-          <ButtonOutline text="Create Event" handleClick={() => {}} className={styles.createEvent} />
+          <ButtonOutline text="Create Event" handleClick={handleCreateEvent} className={styles.createEvent} />
           <Button text="Sign Out" handleClick={handleSignOut} />
         </div>
       ) : (
