@@ -18,7 +18,7 @@ const useEventDetails = ({ eventId }: eventDetailProp) => {
   };
 
   const handleUpdateEvent = () => {
-    router.push(`/update-event/${eventData.id}`);
+    router.push(`/update-event?eventId=${eventId}`);
   };
 
   const deleteEvent = async () => {
