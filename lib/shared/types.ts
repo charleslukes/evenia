@@ -3,11 +3,13 @@ import { SubmitHandler } from "react-hook-form";
 
 export type eventRes = {
   id: number;
-  date: string;
-  city: string;
+  category: string;
   desc: string;
-  image: string;
+  date: string;
+  location: string;
   title: string;
+  price: string;
+  image: any
   ownerId: number | null;
   owner: {
     id: number;
@@ -44,4 +46,5 @@ export type formInputTypes = {
 
 export type eventFormPropType = {
   submit: SubmitHandler<formInputTypes>
+  defaultValues?: Record<any, any>
 }
