@@ -18,13 +18,14 @@ model Owner {
 }
 
 model Event {
-  id      Int      @id @default(autoincrement())
-  name    String
-  date    DateTime
-  city    String
-  title   String
-  image   String
-  desc    String
-  owner   Owner?   @relation(fields: [ownerId], references: [id])
-  ownerId Int?
+  id       Int      @id @default(autoincrement())
+  date     DateTime
+  location String   @default("london")
+  category String   @default("music")
+  title    String
+  image    String   @db.Text
+  desc     String   @db.Text
+  price    String   @default("0")
+  owner    Owner?   @relation(fields: [ownerId], references: [id])
+  ownerId  Int?
 }
