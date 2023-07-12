@@ -2,15 +2,16 @@ import { formInputTypes } from "@lib/shared/types";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 
-const useEventForm = () => {
+const useEventForm = (defaultValues = {}) => {
   const {
     register,
     handleSubmit,
     setValue,
     control,
     formState: { errors },
-  } = useForm<formInputTypes>();
-
+  } = useForm<formInputTypes>({
+    defaultValues: defaultValues,
+  });
 
   const locationOptions = [
     { value: "paris", label: "Paris" },

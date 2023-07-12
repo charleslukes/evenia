@@ -9,7 +9,7 @@ import Dropzone from "react-dropzone";
 import useEventForm from "@lib/hooks/useEventForm";
 import { eventFormPropType } from "@lib/shared/types";
 
-const EventForm = ({ submit }: eventFormPropType) => {
+const EventForm = ({ submit, defaultValues }: eventFormPropType) => {
   const {
     handleSubmit,
     onDrop,
@@ -17,7 +17,7 @@ const EventForm = ({ submit }: eventFormPropType) => {
     categoryOption,
     control,
     locationOptions,
-  } = useEventForm();
+  } = useEventForm(defaultValues);
 
   return (
     <form onSubmit={handleSubmit(submit)}>
