@@ -18,6 +18,6 @@ export const POST = async (req: Request) => {
     return new Response(JSON.stringify(event), { status: 201 });
   } catch (error) {
     console.log({ error });
-    return new Response("Failed to delete event", { status: 500 });
+    return new Response("Failed to create event", { status: 500 });
   }
 };
