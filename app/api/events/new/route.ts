@@ -2,15 +2,16 @@ import { create } from "@lib/controller/event";
 
 export const POST = async (req: Request) => {
   try {
-    const { name, date, city, desc, ownerId, title, image } = await req.json();
+    const { date, location,category, desc, ownerId, title, price, image } = await req.json();
     const event = await create(
       {
-        name,
         date,
-        city,
+        category, 
+        location,
         desc,
         title,
         image,
+        price
       },
       ownerId
     );
