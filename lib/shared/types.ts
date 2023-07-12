@@ -30,3 +30,12 @@ export type eventDetailsPageProp = {
 export interface INewSession extends Session {
     ownerId: number | undefined;
   }
+
+export type FormInputTypes = {
+  category: string;
+  desc: string;
+  date: string;
+  location: string;
+  title: string;
+  price: string;
+};
