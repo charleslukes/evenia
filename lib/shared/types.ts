@@ -1,8 +1,8 @@
 import { Session } from "next-auth";
+import { SubmitHandler } from "react-hook-form";
 
 export type eventRes = {
   id: number;
-  name: string;
   date: string;
   city: string;
   desc: string;
@@ -31,11 +31,17 @@ export interface INewSession extends Session {
     ownerId: number | undefined;
   }
 
-export type FormInputTypes = {
+export type formInputTypes = {
   category: string;
   desc: string;
   date: string;
   location: string;
   title: string;
   price: string;
+  image: any
 };
+
+
+export type eventFormPropType = {
+  submit: SubmitHandler<formInputTypes>
+}
