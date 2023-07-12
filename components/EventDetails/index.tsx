@@ -4,45 +4,11 @@ import styles from "./styles.module.scss";
 import Button from "@ui/Button";
 import { Calendar, MapPin } from "phosphor-react";
 import ButtonOutline from "@ui/ButtonOutline";
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { eventRes, eventDetailProp, INewSession } from "@lib/shared/types";
-import { useRouter } from "next/navigation";
+import { eventDetailProp } from "@lib/shared/types";
+import useEventDetails from "@lib/hooks/useEventDetails";
 
 const EventDetails = ({ eventId }: eventDetailProp) => {
-  const { data: session } = useSession();
-  const [isOwner, setIsOwner] = useState<boolean>(false);
-  const [eventData, setEventData] = useState<eventRes>({} as eventRes);
-  const router = useRouter();
-
-  const fetchEvent = async () => {
-    const userSession = session as INewSession;
-    const response = await fetch(`/api/events/${eventId}`);
-    const data = await response.json();
-    setIsOwner(Number(data.ownerId) === Number(userSession?.ownerId));
-    setEventData(data);
-  };
-
-  const handleUpdateEvent = () => {
-    router.push(`/update-event/${eventData.id}`)
-  }
-
-  const deleteEvent = async () => {
-    try {
-      const res = await fetch(`/api/events/${eventId}`, { method: "DELETE"});
-      if (res.ok) {
-        alert("event deleted");
-        router.push("/");
-      }
-    } catch (error) {
-      console.log({ error });
-    }
-  }
-
-  useEffect(() => {
-    console.log("hellooooo");
-    fetchEvent();
-  }, [session]);
+  const {eventData, isOwner, handleUpdateEvent, deleteEvent } = useEventDetails({eventId})
 
   return (
     <div className={styles.container}>

@@ -15,10 +15,7 @@ const CreateEvent = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // have a loading state before routing
-    if (!session?.user) {
-      router.push("/");
-    }
+    
   }, []);
 
   const createEvent = async () => {
@@ -33,6 +30,7 @@ const CreateEvent = () => {
           desc: "Learn about men and how they think in many ways",
           image: "/assets/images/landscape2.jpeg",
           ownerId: ownerSession.ownerId,
+          price: ""
         }),
       });
       if (res.ok) {
