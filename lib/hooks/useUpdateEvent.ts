@@ -1,18 +1,20 @@
 import { INewSession, eventRes, formInputTypes } from "@lib/shared/types";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const useUpdateEvent = (eventId: string) => {
+const useUpdateEvent = () => {
   const { data } = useSession();
   const [session, setSession] = useState<INewSession>(data as INewSession);
   const router = useRouter();
   const [ownerEvent, setOwnerEvent] = useState<formInputTypes>();
-  
-  const fetchEvent = async () => {
-    const response = await fetch(`/api/events/${eventId}`);
+  const searchParams = useSearchParams();
+  const [eventId, setEventId] = useState<number>();
+
+  const fetchEvent = async (id: string) => {
+    const response = await fetch(`/api/events/${id}`);
     const data: eventRes = await response.json();
-    const {owner, ...others} = data;
+    const { owner, ...others } = data;
     setOwnerEvent(others);
   };
 
@@ -23,21 +25,28 @@ const useUpdateEvent = (eventId: string) => {
   }, [data]);
 
   useEffect(() => {
-    fetchEvent()
-  }, [eventId])
+    const id = searchParams.get("eventId");
+    if (id) {
+      fetchEvent(id);
+      setEventId(+id);
+    }
+  }, [searchParams.get("eventId")]);
 
+  //2023-07-15
   const updateEvent = async (data: formInputTypes) => {
     try {
       const newData = {
         ...data,
-        ownerId: session.ownerId
+        ownerId: session.ownerId,
+        date: new Date(data.date),
+        eventId,
       };
-      const res = await fetch("/api/events/new", {
+      const res = await fetch("/api/events/update", {
         method: "PUT",
         body: JSON.stringify(newData),
       });
       if (res.ok) {
-        alert("event created");
+        alert("event updated");
         router.push("/");
       }
     } catch (error) {
@@ -48,7 +57,7 @@ const useUpdateEvent = (eventId: string) => {
 
   return {
     updateEvent,
-    ownerEvent
+    ownerEvent,
   };
 };
 
