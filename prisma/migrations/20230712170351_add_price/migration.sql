@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Event` ADD COLUMN `price` VARCHAR(191) NOT NULL DEFAULT '0';
