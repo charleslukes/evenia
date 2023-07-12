@@ -1,17 +1,10 @@
+import { formInputTypes } from "@lib/shared/types";
 import prisma from "../prisma";
 
-type eventType = {
-  name: string;
-  date: Date;
-  city: string;
-  desc: string;
-  title: string;
-  image: string;
-};
 
-export const create = async (data: eventType, ownerId: number) => {
+export const create = async (data: formInputTypes, ownerId: number) => {
   const event = await prisma.event.create({
-    data: { ...data, ownerId },
+    data: { ...data,  ownerId },
   });
   return event;
 };
@@ -25,7 +18,7 @@ export const deleteEvent = async (id: number) => {
   return event;
 };
 
-export const update = async (id: number, data: eventType) => {
+export const update = async (id: number, data: formInputTypes) => {
   const event = await prisma.event.update({
     where: {
       id,
