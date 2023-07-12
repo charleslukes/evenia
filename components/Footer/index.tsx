@@ -1,8 +1,12 @@
+"use client"
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const Footer = () => {
+  const { data: session } = useSession();
+
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
@@ -20,11 +24,13 @@ const Footer = () => {
             Home
           </Link>
         </div>
-        <div>
+        {
+          session?.user? <div>
           <Link href={"/create-event"} className={styles.link}>
             Create Event
-          </Link>
-        </div>
+          </Link> 
+        </div>: null
+        }
         <div>
           <Link href={"/"} className={styles.link}>
             Explore Events
