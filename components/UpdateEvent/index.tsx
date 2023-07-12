@@ -2,13 +2,9 @@
 import styles from "./styles.module.scss";
 import EventForm from "@components/EventForm";
 import useUpdateEvent from "@lib/hooks/useUpdateEvent";
-import { useSearchParams } from "next/navigation";
 
 const UpdateEvent = () => {
-  const searchParams = useSearchParams();
-  const eventId = searchParams.get("eventId");
-
-  const { updateEvent, ownerEvent } = useUpdateEvent(eventId!);
+  const { updateEvent, ownerEvent } = useUpdateEvent();
 
   return (
     <div className={styles.container}>
