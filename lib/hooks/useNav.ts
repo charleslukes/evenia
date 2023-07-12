@@ -8,9 +8,11 @@ import {
   ClientSafeProvider,
 } from "next-auth/react";
 import { BuiltInProviderType } from "next-auth/providers";
+import { useRouter } from "next/navigation";
 
 const useNav = () => {
   const { data: session } = useSession();
+  const router = useRouter()
   const [providers, setProviders] = useState<Record<
     LiteralUnion<BuiltInProviderType, string>,
     ClientSafeProvider
@@ -30,13 +32,18 @@ const useNav = () => {
 
   const handleSearch = () => {
   }
+  
+  const handleCreateEvent = () => {
+    router.push("/create-event")
+  }
 
   return {
     session,
     providers,
     handleSignOut,
     signIn,
-    handleSearch
+    handleSearch, 
+    handleCreateEvent
   };
 };
 
