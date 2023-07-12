@@ -1,6 +1,6 @@
 import { INewSession, eventDetailProp, eventRes } from "@lib/shared/types";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const useEventDetails = ({ eventId }: eventDetailProp) => {
