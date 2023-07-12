@@ -1,9 +1,8 @@
 import { deleteEvent, getOneEvent } from "@lib/controller/event";
 import { eventDetailsPageProp } from "@lib/shared/types";
-import { NextApiRequest } from "next";
 
 export const DELETE = async (
-  req: NextApiRequest,
+  _req: Request,
   { params }: eventDetailsPageProp
 ) => {
   try {
@@ -16,7 +15,7 @@ export const DELETE = async (
 };
 
 export const GET = async (
-  req: NextApiRequest,
+  _req: Request,
   { params }: eventDetailsPageProp
 ) => {
   try {
