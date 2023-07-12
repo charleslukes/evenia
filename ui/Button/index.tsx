@@ -5,7 +5,7 @@ type buttonProps = {
   text: string;
   className?: string;
   type?: "submit" | "button";
-  handleClick: MouseEventHandler<HTMLButtonElement>;
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const Button = ({ text, type, className, handleClick }: buttonProps) => {
