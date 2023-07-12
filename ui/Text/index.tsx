@@ -5,13 +5,14 @@ type textInputType = {
   placeholder: string;
   register: any
   className?: string
+  type?: string
 };
 
-const TextInput = ({ handleSearch, placeholder, register, className }: textInputType) => {
+const TextInput = ({ handleSearch, placeholder, register, type, className }: textInputType) => {
   return (
     <div className={`${styles.container} ${className}`}>
       <input
-        type="text"
+        type={type? type : "text"}
         placeholder={placeholder}
         className={styles.textInput}
         onChange={handleSearch}
