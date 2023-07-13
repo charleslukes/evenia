@@ -6,12 +6,13 @@ import { Calendar, MapPin } from "phosphor-react";
 import ButtonOutline from "@ui/ButtonOutline";
 import { eventDetailProp } from "@lib/shared/types";
 import useEventDetails from "@lib/hooks/useEventDetails";
+import { dateRange, monthAndDay } from "@lib/utils/date";
 
 const EventDetails = ({ eventId }: eventDetailProp) => {
   const {eventData, isOwner, handleUpdateEvent, deleteEvent } = useEventDetails({eventId})
 
   return (
-    <div className={styles.container}>
+      eventData.title ? <div className={styles.container}>
       <div className={styles.topContainer}>
         <div className={styles.imageContainer}>
           <Image
@@ -47,10 +48,10 @@ const EventDetails = ({ eventId }: eventDetailProp) => {
                 )}
               </div>
             </div>
-            <div className={styles.date}>SEP 09</div>
+            <div className={styles.date}>{monthAndDay(eventData.date)}</div>
             <h1 className={styles.header}>{eventData.title}</h1>
             <div className={styles.priceAuthor}>
-              <div>$780</div>
+              <div>${eventData.price}</div>
               <div>
                 by <small>{eventData.owner?.name}</small>
               </div>
@@ -76,7 +77,7 @@ const EventDetails = ({ eventId }: eventDetailProp) => {
             </div>
             <div>
               <div>Date and time: </div>
-              <div>Thu, September 9, 2021</div>
+              <div>{dateRange(eventData.date)?.substring(0, 12)}</div>
               <div>10:30 AM - 1:00 PM </div>
             </div>
           </div>
@@ -85,13 +86,13 @@ const EventDetails = ({ eventId }: eventDetailProp) => {
               <MapPin size={32} alt="location icon" />
             </div>
             <div>
-              <div>Location:</div>
+              <div>Location: {eventData.location?.toUpperCase()}</div>
               <div>ONLINE</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> : <div className={styles.container}>Fetching Event details...</div>
   );
 };
 
