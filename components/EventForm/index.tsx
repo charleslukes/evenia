@@ -47,6 +47,9 @@ const EventForm = ({ submit, defaultValues }: eventFormPropType) => {
               );
             }}
           />
+          <div>
+          <small>NB: Image must be less than 50kb</small>
+          </div>
         </div>
         <div className={styles.right}>
           <div className={`${styles.firstDetails} ${styles.marginBottom}`}>
