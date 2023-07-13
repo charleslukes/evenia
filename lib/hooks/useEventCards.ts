@@ -10,13 +10,6 @@ const useEventCards = () => {
     router.push(`/${id}`);
   };
 
-  const dateRange = (dateString: string) => {
-    const str = new Date(dateString).toString();
-    const regex = /^.{4}(.{20})/;
-    const res = regex.exec(str)![1];
-    return res;
-  };
-
   const titleRange = (str: string) => {
     const regex = /^.{0}(.{50})/;
     const res = regex?.exec(str) ? `${regex?.exec(str)![1]}...` : str;
@@ -35,7 +28,6 @@ const useEventCards = () => {
 
   return {
     allEvents,
-    dateRange,
     titleRange,
     handleClick,
   };
